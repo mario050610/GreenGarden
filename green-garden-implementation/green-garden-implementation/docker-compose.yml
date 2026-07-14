@@ -1,0 +1,23 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: green-garden-mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./infra/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: green-garden-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "GreenGarden@123"
+    ports:
+      - "1433:1433"
+    volumes:
+      - green_garden_sql:/var/opt/mssql
+
+volumes:
+  green_garden_sql:
