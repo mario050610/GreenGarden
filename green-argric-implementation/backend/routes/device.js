@@ -1,0 +1,11 @@
+import { Router } from 'express';
+import { store, nextId } from '../data/store.js';
+import { publishDeviceCommand } from '../mqtt.js';
+import { allowRoles } from '../middleware/auth.js';
+const router=Router();
+router.get('/',(req,res)=>res.json(store.devices.map(d=>({...d,area_name:store.areas.find(a=>a.area_id===d.area_id)?.area_name}))));
+router.post('/override',allowRoles('admin','owner','technician'),async(req,res)=>{const device=store.devices.find(d=>d.device_id===Number(req.body.device_id));if(!device)return res.status(404).json({message:'Không tìm thấy thiết bị'});const state=String(req.body.state||req.body.mode||'').toUpperCase();if(!['ON','OFF'].includes(state))return res.status(400).json({message:'Trạng thái phải là ON hoặc OFF'});device.status=state;device.mode=req.body.control_mode||'MANUAL';const command={command_id:nextId(store.commands,'command_id'),device_id:device.device_id,user_id:req.user.id,command_type:state,source:'manual',payload:JSON.stringify(req.body),result_status:'sent',sent_at:new Date().toISOString()};store.commands.unshift(command);await publishDeviceCommand(device,state);res.json({message:'Gửi lệnh điều khiển thành công',device,command});});
+router.post('/',allowRoles('admin','technician'),(req,res)=>{const item={device_id:nextId(store.devices,'device_id'),area_id:Number(req.body.area_id),device_code:req.body.device_code,device_name:req.body.device_name,device_type:req.body.device_type,status:req.body.status||'OFF',mode:req.body.mode||'MANUAL',command_topic:req.body.command_topic||'',status_topic:req.body.status_topic||'',last_seen:null};store.devices.push(item);res.status(201).json(item);});
+router.put('/:id',allowRoles('admin','technician'),(req,res)=>{const item=store.devices.find(x=>x.device_id===Number(req.params.id));if(!item)return res.status(404).json({message:'Không tìm thấy thiết bị'});Object.assign(item,req.body,{device_id:item.device_id});res.json(item);});
+router.delete('/:id',allowRoles('admin'),(req,res)=>{const i=store.devices.findIndex(x=>x.device_id===Number(req.params.id));if(i<0)return res.status(404).json({message:'Không tìm thấy thiết bị'});store.devices.splice(i,1);res.json({message:'Xóa thiết bị thành công'});});
+export default router;
