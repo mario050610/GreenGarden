@@ -1,0 +1,124 @@
+green-argric-implementation/
+├── backend/
+│   ├── config/
+│   │   └── swagger.json
+│   ├── core/
+│   │   └── automation.js
+│   ├── data/
+│   │   └── store.js
+│   ├── database/
+│   │   ├── GA-data.sql
+│   │   └── GA-database.sql
+│   ├── middleware/
+│   │   ├── auth.js
+│   │   └── error.js
+│   ├── routes/
+│   │   ├── activity.js
+│   │   ├── alert.js
+│   │   ├── area.js
+│   │   ├── auth.js
+│   │   ├── dashboard.js
+│   │   ├── device.js
+│   │   ├── integration.js
+│   │   ├── sensor.js
+│   │   ├── task.js
+│   │   ├── threshold.js
+│   │   └── user.js
+│   ├── .env.example
+│   ├── config.js
+│   ├── db.js
+│   ├── index.js
+│   ├── mqtt.js
+│   ├── package-lock.json
+│   ├── package.json
+│   └── spec-iot.md
+├── docs/
+│   ├── section-12/
+│   │   ├── admin/
+│   │   │   ├── images/
+│   │   │   │   └── README.md
+│   │   │   └── admin-flow.md
+│   │   ├── iot/
+│   │   │   ├── images/
+│   │   │   │   └── README.md
+│   │   │   └── iot-flow.md
+│   │   ├── owner/
+│   │   │   ├── images/
+│   │   │   │   └── README.md
+│   │   │   └── owner-flow.md
+│   │   ├── technician/
+│   │   │   ├── images/
+│   │   │   │   └── README.md
+│   │   │   └── technician-flow.md
+│   │   └── README.md
+│   ├── ADAFRUIT-SETUP.md
+│   ├── FIGMA-INTEGRATION.md
+│   ├── MICROBIT-WIRING.md
+│   └── WORK-DIVISION-4-DEVELOPERS.md
+├── frontend/
+│   ├── src/
+│   │   ├── auth/
+│   │   │   └── AuthContext.tsx
+│   │   ├── components/
+│   │   │   ├── Layout.tsx
+│   │   │   ├── RoleRoute.tsx
+│   │   │   └── UI.tsx
+│   │   ├── lib/
+│   │   │   └── api.ts
+│   │   ├── pages/
+│   │   │   ├── AlertsPage.tsx
+│   │   │   ├── AreasPage.tsx
+│   │   │   ├── DashboardPage.tsx
+│   │   │   ├── DevicesPage.tsx
+│   │   │   ├── EnvironmentPage.tsx
+│   │   │   ├── HistoryPage.tsx
+│   │   │   ├── LoginPage.tsx
+│   │   │   ├── TasksPage.tsx
+│   │   │   ├── ThresholdsPage.tsx
+│   │   │   └── UsersPage.tsx
+│   │   ├── App.tsx
+│   │   ├── main.tsx
+│   │   ├── styles.css
+│   │   ├── types.ts
+│   │   └── vite-env.d.ts
+│   ├── .env.example
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── vite.config.ts
+├── infra/
+│   └── mosquitto.conf
+├── iot-gateway/
+│   ├── tests/
+│   │   └── test_switch_protocol.py
+│   ├── .env.example
+│   ├── adafruit_client.py
+│   ├── config.py
+│   ├── main.py
+│   ├── README.md
+│   ├── requirements.txt
+│   ├── serial_gateway.py
+│   └── switch_protocol.py
+├── microbit/
+│   ├── actuators.py
+│   ├── config.py
+│   ├── dht20.py
+│   ├── main.py
+│   ├── protocol.py
+│   ├── README.md
+│   └── sensors.py
+├── simulator/
+│   ├── .env.example
+│   ├── index.js
+│   ├── package-lock.json
+│   ├── package.json
+│   └── README.md
+├── .gitignore
+├── .gitlab-ci.yml
+├── CHANGES-ADAFRUIT-V2.md
+├── CONTRIBUTING.md
+├── docker-compose.yml
+├── README.md
+├── TREE.txt
+└── VALIDATION.md
